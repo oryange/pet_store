@@ -10,7 +10,7 @@ import com.example.app.utils.ResultState
 import kotlinx.coroutines.launch
 
 internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewModel() {
-    private val _randomDog = MutableLiveData<String?>()
+    private val _randomDog = MutableLiveData<String>()
     private val _allBreedsList = MutableLiveData<BreedsResponse?>()
     private val _byBreedsList = MutableLiveData<List<String>>()
 

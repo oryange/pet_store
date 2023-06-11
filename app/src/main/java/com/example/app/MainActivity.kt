@@ -3,9 +3,9 @@ package com.example.app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat.startActivity
 import com.example.app.repository.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
 import com.example.app.ui.BreedListActivity
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding.hound.setOnClickListener { onClickBreeds(breedHound) }
     }
 
-    private fun onClickBreeds(breed:String) {
+    private fun onClickBreeds(breed: String) {
         val intent = Intent(this, BreedListActivity::class.java)
         intent.putExtra(breedKey, breed)
         startActivity(intent)
@@ -48,10 +48,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun onClickRandom() {
         homeViewModel.getRandom()
-        val imageUrl = homeViewModel.randomDog.value
         val randomDogImageView = binding.randomDog
-        homeViewModel.randomDog.observe(this) {
-            Picasso.get().load(imageUrl).into(randomDogImageView)
+        homeViewModel.randomDog.observe(this) { breed ->
+            if (breed != null) {
+                binding.progressBar.visibility = View.GONE
+                binding.randomDog.visibility = View.VISIBLE
+                Picasso.get().load(breed).into(randomDogImageView)
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.randomDog.visibility = View.GONE
+            }
         }
     }
 }
