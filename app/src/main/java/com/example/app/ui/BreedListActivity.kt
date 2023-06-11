@@ -38,13 +38,13 @@ class BreedListActivity : AppCompatActivity() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // todo ver se ha outro metodo que nao esteja deprecado
         toolbar.setNavigationOnClickListener { onBackPressed() }
-
     }
 
     private fun configRecyclerView() {
+        //todo: refatorar para um viemodel separado
         homeViewModel.getListByBreed(breed)
-
         var breedList = homeViewModel.byBreedsList.value
         val adapter = BreedListAdapter(breedList ?: emptyList())
         binding.recyclerBreeds.adapter = adapter

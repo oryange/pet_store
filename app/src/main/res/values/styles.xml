@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner">
-        <!-- Defina as propriedades desejadas para o estilo -->
-        <item name="android:textSize">43sp</item>
+    <style name="SpinnerTextStyle" parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">24sp</item>  <!-- Tamanho da fonte personalizado -->
     </style>
 </resources>
