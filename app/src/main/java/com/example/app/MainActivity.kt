@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.app.repository.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
 import com.example.app.ui.HomeViewModel
 import com.example.app.ui.HomeViewModelFactory
-import com.example.app.utils.ResultState
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,20 +24,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.randomDog.setOnClickListener {
+        binding.randomDog.setOnClickListener { onClickRandom() }
+        binding.labrador.setOnClickListener { onClickBreeds() }
+    }
 
-            onClickRandom()
+   private fun onClickBreeds() {
+        binding.labrador.setOnClickListener {
+            homeViewModel.getListByBreed("hound")
+            // levar para tela labrador
         }
     }
 
     private fun onClickRandom() {
-
         homeViewModel.getRandom()
-
+        val imageUrl = homeViewModel._randomDog.value
+        val randomDogImageView = binding.randomDog
         homeViewModel._randomDog.observe(this) {
-            println("VER AQUI: ${homeViewModel._randomDog.value}")
+            Picasso.get().load(imageUrl).into(randomDogImageView)
         }
-
-
     }
 }

@@ -1,6 +1,5 @@
 package com.example.app.ui
 
-import android.content.ClipData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,37 +10,34 @@ import com.example.app.utils.ResultState
 import kotlinx.coroutines.launch
 
 internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewModel() {
-    private val breedsList = MutableLiveData<BreedsResponse?>()
-
-    // TODO: verificar se de fato precisa ser um liveData este:
     private val randomDog = MutableLiveData<String?>()
+    private val allBreedsList = MutableLiveData<BreedsResponse?>()
+    private val byBreedsList = MutableLiveData<List<String?>?>()
 
-    val _breedsList = breedsList
     val _randomDog = randomDog
+    val _allBreedsList = allBreedsList
+    val _byBreedsList = byBreedsList
 
-    fun getRandom() {
+    fun getListByBreed(breed: String) {
         viewModelScope.launch {
-            val response = petsRepository.getRandom()
-            response?.let {
+            val response = petsRepository.getListByBreed(breed)
+            response.let {
                 when (it) {
-                    is ResultState.Success -> randomDog.postValue(it.data.message)
-                    is ResultState.Error -> randomDog.postValue(DEFAULT_VALUE)
+                    is ResultState.Success ->{
+                        byBreedsList.postValue(it.data.listOfmessage)
+                    }
+                    is ResultState.Error -> byBreedsList.postValue(listOf(DEFAULT_VALUE))
                 }
             }
         }
     }
-
-    suspend fun getBreeds() {
+    fun getRandom() {
         viewModelScope.launch {
-            val response = petsRepository.getBreeds()
-            response?.let {
+            val response = petsRepository.getRandom()
+            response.let {
                 when (it) {
-                    is ResultState.Success -> {
-                        breedsList.postValue(it.data)
-                    }
-                    is ResultState.Error -> {
-                        breedsList.postValue(null)
-                    }
+                    is ResultState.Success -> randomDog.postValue(it.data.message)
+                    is ResultState.Error -> randomDog.postValue(DEFAULT_VALUE)
                 }
             }
         }
