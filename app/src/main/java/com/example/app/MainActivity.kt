@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
 import com.example.app.repository.PetsRepositoryImpl
@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso
 class MainActivity : AppCompatActivity() {
     private val spinnerValues = mutableListOf<String>()
     private lateinit var spinnerAdapter: ArrayAdapter<String>
+    private var isFirstSelection = true
 
     private val homeViewModel: HomeViewModel by viewModels {
         HomeViewModelFactory(PetsRepositoryImpl(RetrofitConfig.getApiService()))
@@ -36,30 +37,56 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setListeners()
+        setupSpinner()
+    }
 
-        // Inicializa o adaptador do Spinner
+    private fun setupSpinner() {
         spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerValues)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        // Associa o adaptador ao Spinner
         val spinner = binding.actionBarSpinner
         spinner.adapter = spinnerAdapter
 
-        // Supondo que você tenha recebido os valores da API em uma lista chamada "apiValues"
+        getBreedListForSpinner()
+        itemSelectorConfiguration()
+    }
+
+    private fun getBreedListForSpinner() {
         homeViewModel.getAllBreeds()
         homeViewModel.allBreedsList.observe(this) { list ->
             if (list != null) {
                 spinnerValues.addAll(list)
+                spinnerAdapter.notifyDataSetChanged()
             }
         }
-        spinnerAdapter.notifyDataSetChanged()
+    }
 
+    private fun itemSelectorConfiguration() {
+        val spinner = binding.actionBarSpinner
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (isFirstSelection) {
+                    isFirstSelection = false
+                    return
+                }
+                val selectedValue = spinnerValues[position]
+                onClickBreeds(selectedValue)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Not implemented
+            }
+        }
     }
 
     private fun setListeners() {
         binding.randomDog.setOnClickListener { onClickRandom() }
         binding.labrador.setOnClickListener { onClickBreeds(breedLabrador) }
-        binding.akita.setOnClickListener { onClickBreeds(breedAkita)}
+        binding.akita.setOnClickListener { onClickBreeds(breedAkita) }
         binding.bulldog.setOnClickListener { onClickBreeds(breedBulldog) }
         binding.hound.setOnClickListener { onClickBreeds(breedHound) }
     }
