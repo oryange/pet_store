@@ -1,5 +1,8 @@
 package com.example.app.services.response
 
+import com.google.gson.annotations.SerializedName
+
 data class AllBreedsResponse(
-    val message: Map<String, Any>
+    @SerializedName("message")
+    val messageObject: Map<String, Any>
 )

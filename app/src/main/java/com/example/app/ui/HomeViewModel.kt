@@ -21,7 +21,7 @@ internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewM
             response.let {
                 when (it) {
                     is ResultState.Success -> {
-                        _allBreedsList.postValue(it.data.message.keys.toList())
+                        _allBreedsList.postValue(it.data.messageObject.keys.toList())
                     }
                     is ResultState.Error -> _allBreedsList.postValue(listOf(DEFAULT_VALUE))
                 }
