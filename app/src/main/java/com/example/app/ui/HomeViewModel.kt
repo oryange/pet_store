@@ -11,19 +11,33 @@ import kotlinx.coroutines.launch
 
 internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewModel() {
     private val _randomDog = MutableLiveData<String>()
-    private val _allBreedsList = MutableLiveData<BreedsResponse?>()
+    private val _allBreedsList = MutableLiveData<List<String>>()
     private val _byBreedsList = MutableLiveData<List<String>>()
 
     val randomDog = _randomDog
     val allBreedsList = _allBreedsList
     val byBreedsList = _byBreedsList
 
+    fun getAllBreeds() {
+        viewModelScope.launch {
+            val response = petsRepository.getAllBreeds()
+            response.let {
+                when (it) {
+                    is ResultState.Success -> {
+                        _allBreedsList.postValue(it.data.message.keys.toList())
+                    }
+                    is ResultState.Error -> _byBreedsList.postValue(listOf(DEFAULT_VALUE))
+                }
+            }
+        }
+    }
+
     fun getListByBreed(breed: String) {
         viewModelScope.launch {
             val response = petsRepository.getListByBreed(breed)
             response.let {
                 when (it) {
-                    is ResultState.Success ->{
+                    is ResultState.Success -> {
                         _byBreedsList.postValue(it.data.listOfmessage)
                     }
                     is ResultState.Error -> _byBreedsList.postValue(listOf(DEFAULT_VALUE))
@@ -31,6 +45,7 @@ internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewM
             }
         }
     }
+
     fun getRandom() {
         viewModelScope.launch {
             val response = petsRepository.getRandom()

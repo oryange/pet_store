@@ -6,65 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/select_breed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/select_a_breed"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <Spinner
         android:id="@+id/action_bar_spinner"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:entries="@array/options"
         android:spinnerStyle="@style/SpinnerTextStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/select_breed" />
 
     <TextView
         android:id="@+id/some_breeds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:text="@string/some_breeds"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/images_some_breeds"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_spinner" />
 
     <LinearLayout
         android:id="@+id/images_some_breeds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="56dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_breeds">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/labrador"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/border_image"
-            android:padding="4dp"
-            android:src="@drawable/ic_labrador" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/bulldog"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/border_image"
-            android:padding="4dp"
-            android:src="@drawable/ic_bulldog" />
+            <ImageView
+                android:id="@+id/labrador"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="4dp"
+                android:background="@drawable/border_image"
+                android:padding="8dp"
+                android:src="@drawable/ic_labrador" />
 
-        <ImageView
-            android:id="@+id/hound"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/border_image"
-            android:padding="4dp"
-            android:src="@drawable/ic_hound" />
+            <ImageView
+                android:id="@+id/bulldog"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_below="@id/labrador"
+                android:layout_alignParentStart="true"
+                android:layout_margin="4dp"
+                android:background="@drawable/border_image"
+                android:padding="8dp"
+                android:src="@drawable/ic_bulldog" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/akita"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="4dp"
+                android:background="@drawable/border_image"
+                android:padding="4dp"
+                android:src="@drawable/ic_akita" />
+
+            <ImageView
+                android:id="@+id/hound"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_below="@id/akita"
+                android:layout_alignParentStart="true"
+                android:layout_margin="4dp"
+                android:background="@drawable/border_image"
+                android:padding="4dp"
+                android:src="@drawable/ic_hound" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 
@@ -81,9 +126,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="196dp"
         android:text="@string/random_dog"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,11 +138,13 @@
 
     <ImageView
         android:id="@+id/random_dog"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="24dp"
+        android:padding="8dp"
         android:src="@drawable/ic_happy_dog"
         android:visibility="visible"
+        android:background="@drawable/border_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

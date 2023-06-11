@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">Pet Store</string>
     <string name="some_breeds">Some Breeds</string>
     <string name="random_dog">Random Dog</string>
     <string name="breeds_not_found">Breeds not found</string>
+    <string name="select_a_breed">Select a breed</string>
 </resources>

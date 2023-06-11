@@ -1,5 +1,6 @@
 package com.example.app.services
 
+import com.example.app.services.response.AllBreedsResponse
 import com.example.app.services.response.BreedsResponse
 import com.example.app.services.response.ByBreedResponse
 import retrofit2.Response
@@ -8,7 +9,7 @@ import retrofit2.http.Path
 
 internal interface PetsApi {
     @GET("breeds/list/all")
-    suspend fun getAllBreeds(): Response<BreedsResponse>
+    suspend fun getAllBreeds(): Response<AllBreedsResponse>
 
     @GET("https://dog.ceo/api/breed/{breed}/images")
     suspend fun getListByBreed(@Path("breed") breed: String): Response<ByBreedResponse>
