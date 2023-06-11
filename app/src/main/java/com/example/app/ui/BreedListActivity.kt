@@ -14,42 +14,42 @@ class BreedListActivity : AppCompatActivity() {
 
     private lateinit var breed: String
 
-    private val homeViewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(PetsRepositoryImpl(RetrofitConfig.getApiService()))
+    private val breedListViewModel: BreedListViewModel by viewModels {
+        BreedListWieModelFactory(PetsRepositoryImpl(RetrofitConfig.getApiService()))
     }
 
     private val binding: ActivityBreedListBinding by lazy {
         ActivityBreedListBinding.inflate(layoutInflater)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        //todo: refactor
-        breed = intent.getStringExtra(breedKey) ?: breedLabrador
-        binding.progressBar.visibility = View.VISIBLE
+        getSelectedBreed()
+
+
         configRecyclerView()
         configToolbar()
-
     }
 
+    private fun getSelectedBreed() {
+        breed = intent.getStringExtra(breedKey) ?: breedLabrador
+    }
     private fun configToolbar() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // todo ver se ha outro metodo que nao esteja deprecado
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     private fun configRecyclerView() {
-        //todo: refatorar para um viemodel separado
-        homeViewModel.getListByBreed(breed)
-        var breedList = homeViewModel.byBreedsList.value
+        binding.progressBar.visibility = View.VISIBLE
+        breedListViewModel.getListByBreed(breed)
+        var breedList = breedListViewModel.byBreedsList.value
         val adapter = BreedListAdapter(breedList ?: emptyList())
         binding.recyclerBreeds.adapter = adapter
 
-        return homeViewModel.byBreedsList.observe(this) { list ->
+        return breedListViewModel.byBreedsList.observe(this) { list ->
             if (list != null) {
                 adapter.setList(list)
                 binding.progressBar.visibility = View.GONE
