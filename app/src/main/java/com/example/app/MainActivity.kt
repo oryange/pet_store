@@ -1,11 +1,13 @@
 package com.example.app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
 import com.example.app.repository.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
+import com.example.app.ui.BreedListActivity
 import com.example.app.ui.HomeViewModel
 import com.example.app.ui.HomeViewModelFactory
 import com.squareup.picasso.Picasso
@@ -30,16 +32,17 @@ class MainActivity : AppCompatActivity() {
 
    private fun onClickBreeds() {
         binding.labrador.setOnClickListener {
-            homeViewModel.getListByBreed("hound")
-            // levar para tela labrador
+            val intent = Intent(this, BreedListActivity::class.java)
+            intent.putExtra("breed", "hound")
+            startActivity(intent)
         }
     }
 
     private fun onClickRandom() {
         homeViewModel.getRandom()
-        val imageUrl = homeViewModel._randomDog.value
+        val imageUrl = homeViewModel.randomDog.value
         val randomDogImageView = binding.randomDog
-        homeViewModel._randomDog.observe(this) {
+        homeViewModel.randomDog.observe(this) {
             Picasso.get().load(imageUrl).into(randomDogImageView)
         }
     }

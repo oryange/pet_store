@@ -10,13 +10,13 @@ import com.example.app.utils.ResultState
 import kotlinx.coroutines.launch
 
 internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewModel() {
-    private val randomDog = MutableLiveData<String?>()
-    private val allBreedsList = MutableLiveData<BreedsResponse?>()
-    private val byBreedsList = MutableLiveData<List<String?>?>()
+    private val _randomDog = MutableLiveData<String?>()
+    private val _allBreedsList = MutableLiveData<BreedsResponse?>()
+    private val _byBreedsList = MutableLiveData<List<String>>()
 
-    val _randomDog = randomDog
-    val _allBreedsList = allBreedsList
-    val _byBreedsList = byBreedsList
+    val randomDog = _randomDog
+    val allBreedsList = _allBreedsList
+    val byBreedsList = _byBreedsList
 
     fun getListByBreed(breed: String) {
         viewModelScope.launch {
@@ -24,9 +24,9 @@ internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewM
             response.let {
                 when (it) {
                     is ResultState.Success ->{
-                        byBreedsList.postValue(it.data.listOfmessage)
+                        _byBreedsList.postValue(it.data.listOfmessage)
                     }
-                    is ResultState.Error -> byBreedsList.postValue(listOf(DEFAULT_VALUE))
+                    is ResultState.Error -> _byBreedsList.postValue(listOf(DEFAULT_VALUE))
                 }
             }
         }
@@ -36,8 +36,8 @@ internal class HomeViewModel(private val petsRepository: PetsRepository) : ViewM
             val response = petsRepository.getRandom()
             response.let {
                 when (it) {
-                    is ResultState.Success -> randomDog.postValue(it.data.message)
-                    is ResultState.Error -> randomDog.postValue(DEFAULT_VALUE)
+                    is ResultState.Success -> _randomDog.postValue(it.data.message)
+                    is ResultState.Error -> _randomDog.postValue(DEFAULT_VALUE)
                 }
             }
         }
