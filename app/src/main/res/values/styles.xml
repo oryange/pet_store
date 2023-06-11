@@ -1,5 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="SpinnerTextStyle" parent="@android:style/Widget.TextView.SpinnerItem">
-        <item name="android:textSize">24sp</item>  <!-- Tamanho da fonte personalizado -->
+    <style name="SpinnerTextStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="fontDefault" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/grey</item>
     </style>
 </resources>

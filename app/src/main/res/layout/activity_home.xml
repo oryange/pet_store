@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/select_a_breed"
-        android:textSize="24sp"
+        android:theme="@style/fontDefault"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Spinner
         android:id="@+id/action_bar_spinner"
@@ -24,10 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:entries="@array/options"
-        android:spinnerStyle="@style/SpinnerTextStyle"
+        android:theme="@style/SpinnerTextStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_breed" />
+        app:layout_constraintTop_toBottomOf="@+id/select_breed"
+        android:background="@drawable/border_spinner" />
 
     <TextView
         android:id="@+id/some_breeds"
