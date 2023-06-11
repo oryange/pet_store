@@ -10,9 +10,9 @@ import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
 import com.example.app.repository.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
-import com.example.app.ui.BreedListActivity
-import com.example.app.ui.HomeViewModel
-import com.example.app.ui.HomeViewModelFactory
+import com.example.app.ui.breed.BreedListActivity
+import com.example.app.ui.home.HomeViewModel
+import com.example.app.ui.home.HomeViewModelFactory
 import com.example.app.utils.Constants.breedAkita
 import com.example.app.utils.Constants.breedBulldog
 import com.example.app.utils.Constants.breedHound

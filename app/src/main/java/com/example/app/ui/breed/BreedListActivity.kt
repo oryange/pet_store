@@ -1,4 +1,4 @@
-package com.example.app.ui
+package com.example.app.ui.breed
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

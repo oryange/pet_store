@@ -1,6 +1,5 @@
-package com.example.app.ui
+package com.example.app.ui.breed
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
