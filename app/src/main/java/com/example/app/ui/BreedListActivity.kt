@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import com.example.app.databinding.ActivityBreedListBinding
 import com.example.app.repository.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
+import com.example.app.utils.Constants.breedKey
+import com.example.app.utils.Constants.breedLabrador
 
 class BreedListActivity : AppCompatActivity() {
 
@@ -24,9 +26,20 @@ class BreedListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        breed = intent.getStringExtra("breed") ?: "labrador"
+        //todo: refactor
+        breed = intent.getStringExtra(breedKey) ?: breedLabrador
         binding.progressBar.visibility = View.VISIBLE
         configRecyclerView()
+        configToolbar()
+
+    }
+
+    private fun configToolbar() {
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+
     }
 
     private fun configRecyclerView() {
