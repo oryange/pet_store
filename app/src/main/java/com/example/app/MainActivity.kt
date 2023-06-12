@@ -8,7 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.app.databinding.ActivityHomeBinding
 import androidx.activity.viewModels
-import com.example.app.repository.PetsRepositoryImpl
+import com.example.app.repository.dataRemote.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
 import com.example.app.ui.breed.BreedListActivity
 import com.example.app.ui.home.HomeViewModel

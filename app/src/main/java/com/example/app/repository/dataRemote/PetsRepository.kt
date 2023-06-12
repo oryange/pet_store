@@ -1,4 +1,4 @@
-package com.example.app.repository
+package com.example.app.repository.dataRemote
 
 import com.example.app.services.response.AllBreedsResponse
 import com.example.app.services.response.BreedsResponse

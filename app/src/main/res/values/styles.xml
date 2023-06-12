@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="SpinnerTextStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/grey</item>

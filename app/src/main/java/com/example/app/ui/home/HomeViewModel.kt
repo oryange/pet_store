@@ -3,7 +3,7 @@ package com.example.app.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.app.repository.PetsRepository
+import com.example.app.repository.dataRemote.PetsRepository
 import com.example.app.utils.Constants.DEFAULT_VALUE
 import com.example.app.utils.ResultState
 import kotlinx.coroutines.launch

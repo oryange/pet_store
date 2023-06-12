@@ -2,7 +2,7 @@ package com.example.app.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.app.repository.PetsRepository
+import com.example.app.repository.dataRemote.PetsRepository
 
 internal class HomeViewModelFactory(private val petsRepository: PetsRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
