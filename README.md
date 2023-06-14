@@ -4,6 +4,7 @@ Este é um aplicativo de lista de pets, desenvolvido usando a arquitetura MVVM (
 ## Recursos do Aplicativo
 - Visualização de uma lista de imagens de pets.
 - Obtenção de imagens randômicas de pets.
+- Opção de favoritar imagens.
 - Arquitetura MVVM para uma separação clara de responsabilidades.
 - Utilização da biblioteca Retrofit para comunicação com a API.
 - Utilização de boas práticas de desenvolvimento de aplicativos Android.
