@@ -22,7 +22,8 @@ Este aplicativo está em constante melhoria. No futuro, serão implementados tes
 Fique atento para atualizações e novas versões com recursos aprimorados.
 
 ## App na Prática
-https://github.com/oryange/pet_store/assets/80550000/7ddb299a-2f73-40f3-b31f-a99d4a0bd2ba
+https://github.com/oryange/pet_store/assets/80550000/cce898aa-e0da-4180-9ec5-0350bb7342d9
+
 
 
 
