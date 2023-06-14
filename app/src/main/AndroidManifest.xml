@@ -17,6 +17,9 @@
             android:name=".ui.breed.BreedListActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.favorites.FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

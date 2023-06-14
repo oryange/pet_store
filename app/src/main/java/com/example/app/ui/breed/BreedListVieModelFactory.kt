@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.app.repository.dataLocal.PetsSharedPreferences
 import com.example.app.repository.dataRemote.PetsRepository
 
-internal class BreedListWieModelFactory(private val petsRepository: PetsRepository, private val petsSharedPreferences: PetsSharedPreferences) :
+internal class BreedListVieModelFactory(private val petsRepository: PetsRepository, private val petsSharedPreferences: PetsSharedPreferences) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BreedListViewModel::class.java)) {

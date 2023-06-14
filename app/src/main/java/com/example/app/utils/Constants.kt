@@ -8,4 +8,6 @@ object Constants {
     val breedAkita = "akita"
     val breedBulldog = "bulldog"
     val breedHound = "hound"
+    val keySheredPreferences = "app_preferences"
+    val keyPreferences = "item_list"
 }

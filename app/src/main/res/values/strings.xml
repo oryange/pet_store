@@ -4,4 +4,5 @@
     <string name="random_dog">Random Dog</string>
     <string name="breeds_not_found">Breeds not found</string>
     <string name="select_a_breed">Select a breed</string>
+    <string name="favorites_list_is_empty">Your favorites list is empty, add some pets to see them here</string>
 </resources>

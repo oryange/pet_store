@@ -16,7 +16,7 @@ class BreedListActivity : AppCompatActivity() {
     private lateinit var breed: String
 
     private val breedListViewModel: BreedListViewModel by viewModels {
-        BreedListWieModelFactory(PetsRepositoryImpl(RetrofitConfig.getApiService()), PetsSharedPreferencesImpl(this))
+        BreedListVieModelFactory(PetsRepositoryImpl(RetrofitConfig.getApiService()), PetsSharedPreferencesImpl(this))
     }
 
     private val binding: ActivityBreedListBinding by lazy {

@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import com.example.app.repository.dataRemote.PetsRepositoryImpl
 import com.example.app.services.RetrofitConfig
 import com.example.app.ui.breed.BreedListActivity
+import com.example.app.ui.favorites.FavoriteActivity
 import com.example.app.ui.home.HomeViewModel
 import com.example.app.ui.home.HomeViewModelFactory
 import com.example.app.utils.Constants.breedAkita
@@ -89,11 +90,17 @@ class MainActivity : AppCompatActivity() {
         binding.akita.setOnClickListener { onClickBreeds(breedAkita) }
         binding.bulldog.setOnClickListener { onClickBreeds(breedBulldog) }
         binding.hound.setOnClickListener { onClickBreeds(breedHound) }
+        binding.toolbarFavorite.setOnClickListener { onClickFavorite() }
     }
 
     private fun onClickBreeds(breed: String) {
         val intent = Intent(this, BreedListActivity::class.java)
         intent.putExtra(breedKey, breed)
+        startActivity(intent)
+    }
+
+    private fun onClickFavorite(){
+        intent = Intent(this, FavoriteActivity::class.java)
         startActivity(intent)
     }
 
